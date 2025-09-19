@@ -159,6 +159,5 @@ iOSInjectionProject/
 # Created by developer
 
 .specstory/
-**/Secrets.xcconfig
 
 # end of developer
