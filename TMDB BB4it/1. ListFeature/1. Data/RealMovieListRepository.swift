@@ -21,7 +21,7 @@ struct RealMovieListRepository: MovieListRepository {
 
     // MARK: Logic
 
-    func getNowPlayingList(page: Int) async throws -> MoviePage {
+    func getNowPlayingList(page: Int) async throws -> MovieListPage {
         let request = NowPlayingMovieListRequest(page: page)
 
         let result = try await api.get(request)
