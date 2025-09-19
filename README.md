@@ -2,13 +2,18 @@
 
 ## Getting Started
 
-To run this project, you need to provide the TMDB API access token. I've set up the project to use Xcode Configurations, so you won't commit keys to the repository.
+To run this project, you need to provide your TMDB API access token.
 
 1.  Create a `.env` file in the root of the project.
 2.  Add your API token to the file like this:
 
 ```markdown
     ACCESS_TOKEN = "YOUR_API_ACCESS_TOKEN_HERE"
+```
+3.  Build the project once in Xcode. This will run a script that populates Secrets.xcconfig with your key.
+4.  Tell Git to ignore your local changes to the secrets file by running this command in your terminal from the project root:
+```shell
+    git update-index --skip-worktree "TMDB BB4it/Secrets.xcconfig"
 ```
 
 ## Architectural Approach
