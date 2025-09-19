@@ -16,15 +16,10 @@ extension TMDBAPIRequest {
 extension TMDBAPIRequest {
     var api: URL { .init(string: .httpUrl.tmdbAPI)! }
 
-    private var accessKey: String {
-        // TODO: Use xcode configs to avoid commiting key in repo
-        "???"
-    }
-
     var authHeaders: [String : String] {
         [
             "accept": "application/json",
-            "Authorization": "Bearer \(accessKey)"
+            "Authorization": "Bearer \(Environment.ACCESS_TOKEN)"
         ]
     }
 }

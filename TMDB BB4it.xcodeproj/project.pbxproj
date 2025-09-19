@@ -127,6 +127,8 @@
 /* Begin XCBuildConfiguration section */
 		641068CD2E7D1498007B9607 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReferenceAnchor = 641068C62E7D1491007B9607 /* TMDB BB4it */;
+			baseConfigurationReferenceRelativePath = Secrets.xcconfig;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -191,6 +193,8 @@
 		};
 		641068CE2E7D1498007B9607 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReferenceAnchor = 641068C62E7D1491007B9607 /* TMDB BB4it */;
+			baseConfigurationReferenceRelativePath = Secrets.xcconfig;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -256,6 +260,7 @@
 				DEVELOPMENT_TEAM = XZBU42828U;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "TMDB-BB4it-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "TMDB BB4it";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -291,6 +296,7 @@
 				DEVELOPMENT_TEAM = XZBU42828U;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "TMDB-BB4it-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "TMDB BB4it";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
