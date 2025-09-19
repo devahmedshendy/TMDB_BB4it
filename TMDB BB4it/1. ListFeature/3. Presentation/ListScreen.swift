@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ListScreen: View {
+    @StateObject var controller: ListController
+
     var body: some View {
         VStack {
             Image(systemName: "globe")
@@ -16,5 +18,8 @@ struct ListScreen: View {
             Text("Hello, world!")
         }
         .padding()
+        .task {
+            await controller.onAppearTask()
+        }
     }
 }
