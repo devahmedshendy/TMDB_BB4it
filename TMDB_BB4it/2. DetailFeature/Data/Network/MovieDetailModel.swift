@@ -59,9 +59,9 @@ struct MovieDetailModel: Decodable {
             )
         }
 
-        self.homepage_url = try container.decodeIfPresent(URL.self, forKey: .homepage_url)
+        self.homepage_url = try? container.decodeIfPresent(URL.self, forKey: .homepage_url)
 
-        if let imdb_id = try container.decodeIfPresent(String.self, forKey: .imdb_id) {
+        if let imdb_id = try? container.decodeIfPresent(String.self, forKey: .imdb_id) {
             if let imdb_url = URL(string: .httpUrl.imdbMovieUrl + "\(imdb_id)") {
                 self.imdb_url = imdb_url
             } else {
