@@ -3,7 +3,6 @@
 //  CoreModule
 //
 //  Created by Ahmed Shendy on 09/07/2024.
-//  Copyright © 2024 Semicolon. All rights reserved.
 //
 
 import Foundation
