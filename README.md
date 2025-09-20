@@ -2,20 +2,36 @@
 
 ## Getting Started
 
-To run this project, you need to provide your TMDB API access token.
+1.  **Create an environment file.**
+    Create a `.env` file in the root of the project.
 
-1.  Create a `.env` file in the root of the project.
-2.  Add your API token to the file like this:
+2.  **Add your API Token.**
+    Open the `.env` file and add your TMDB API Access Token like this:
 
 ```markdown
     ACCESS_TOKEN = "YOUR_API_ACCESS_TOKEN_HERE"
 ```
-3.  Build the project once in Xcode. This will run a script that populates Secrets.xcconfig with your key.
-4.  Tell Git to ignore your local changes to the secrets file by running this command in your terminal from the project root:
+
+You can now build and run the project. For more details on the setup, see the notes below.
+
+
+## Developer Notes
+
+### How API Keys Are Managed
+
+The project uses a build script to automatically populate a `Secrets.xcconfig` file from your `.env` file. This ensures your keys are never committed to the repository.
+
+However, this means the `Secrets.xcconfig` file will show as modified in Git. To prevent accidentally committing this file, it's recommended to tell Git to ignore local changes by running this command once from the project root:
+
 ```shell
-    git update-index --skip-worktree "TMDB BB4it/Secrets.xcconfig"
+git update-index --skip-worktree "TMDB_BB4it/Secrets.xcconfig"
 ```
-5. After running the app, you can read about the [Architectural Approach](#Architectural-Approach) or the [Design Decisions](#Design-Decisions) I made.
+
+### Documentation Index
+
+After running the app, you can read more about the project:
+-   [Architectural Approach](Architectural-Approach)
+-   [Design Decisions](Design-Decisions)
 
 ## Architectural Approach
 
