@@ -20,12 +20,19 @@ To run this project, you need to provide your TMDB API access token.
 
 How I thought about the process:
 
--   Planning a composable network layer.
--   Planning to use `URLSession` over `Alamofire`.
--   Planning a Clean Architecture structure with MVC as its presentation layer.
--   Implementing the movie list request.
--   Implementing Xcode Configurations to safely use API keys without committing them to the codebase.
--   Planning for SwiftLint integration.
+-   [x] Implemented a composable network layer.
+-   [x] Used `URLSession` over `Alamofire`.
+-   [x] Implemented a Clean Architecture structure with MVC as its presentation layer.
+-   [x] Implemented the movie list request.
+-   [x] Implemented Xcode Configurations to safely use API keys without committing them to the codebase.
+-   [ ] Implement SwiftLint for code style consistency.
+-   [x] Implemented reusability for the Now Playing, Upcoming, and Popular features.
+-   [x] Improved the implementation for the Now Playing, Upcoming, and Popular features.
+-   [ ] Implement success and failure handling in the controllers for readability.
+-   [x] Implemented proper error handling for the network layer.
+-   [x] Implemented proper error handling for the Now Playing, Upcoming, and Popular features.
+-   [x] Implemented a toast notification feature.
+-   [ ] Re-check all TODOs for cleanup and any remaining tasks.
 
 ## Design Decisions
 
