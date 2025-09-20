@@ -94,12 +94,11 @@ final class MovieListTabController: BaseController {
             self.onLoadingMoreFailure(error.mapToApplicationError())
         }
 
-        guard !isLoadingMore else { return }
+        guard isLoadingMore == false else { return }
 
         guard case let .ready(currentResult) = self.data else { return }
         guard currentResult.page < currentResult.totalPages else { return }
 
-        print("👉 loadNextPage")
         tasks[#function]?.cancel()
         tasks[#function] = nil
         tasks[#function] = Task { [weak self] in

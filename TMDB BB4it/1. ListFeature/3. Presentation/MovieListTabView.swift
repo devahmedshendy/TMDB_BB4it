@@ -66,56 +66,68 @@ struct MovieListTabView: View {
                 index: $index,
                 items: movies
             ) { movie in
-                GeometryReader { geo in
-                    VStack(alignment: .center, spacing: 0) {
-                        KFImage(movie.posterURL)
-                            .resizable()
-                            .aspectRatio(contentMode: .fill)
-                            .frame(
-                                width: geo.size.width,
-                                height: geo.size.height * 0.675,
-                                alignment: .center
-                            )
-                            .cornerRadius(25)
-
-                        Spacer().frame(height: 25)
-
-                        Text(movie.title)
-                            .font(.largeTitle)
-                            .foregroundStyle(.primary)
-                            .lineLimit(3)
-                            .multilineTextAlignment(.center)
-                            .frame(minWidth: 0, maxWidth: .infinity, alignment: .center)
-                            .fixedSize(horizontal: false, vertical: true)
-
-                        Spacer().frame(height: 9)
-
-                        Text(movie.releaseDate)
-                            .font(.largeTitle)
-                            .foregroundStyle(.secondary)
-                            .lineLimit(2)
-                            .multilineTextAlignment(.center)
-                            .frame(minWidth: 0, maxWidth: .infinity, alignment: .center)
-                            .fixedSize(horizontal: true, vertical: true)
-
-                        Spacer()
-                    }
+                MovieCardView(movie: movie)
                     .onAppear {
-                        // Define how close to the end we should be before loading more
-                        let threshold = 10
+                        print("on MovieCardView appeared: \(movie.title)")
+                    }
+                    .onChange(of: index) { index in
+                        if movies[index].id == movie.id {
+                            // Define how close to the end we should be.
+                            let threshold = 10
 
-                        // Find the index of the movie that just appeared
-                        if let movieIndex = movies.firstIndex(where: { $0.id == movie.id }) {
-
-                            // Calculate the index that should trigger the load
+                            // Calculate the index that should trigger the load.
                             let thresholdIndex = movies.index(movies.endIndex, offsetBy: -threshold)
 
-                            // If the appeared movie is our threshold movie, load the next page
-                            if movieIndex >= thresholdIndex {
+                            // If the current centered index has passed the threshold, load the next page.
+                            if index >= thresholdIndex {
+                                print("getNextPage after: \(movie.title)")
                                 controller.getNextPage()
                             }
                         }
                     }
+            }
+        }
+    }
+}
+
+extension MovieListTabView {
+    struct MovieCardView: View {
+        let movie: Movie
+
+        var body: some View {
+            GeometryReader { geo in
+                VStack(alignment: .center, spacing: 0) {
+                    KFImage(movie.posterURL)
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(
+                            width: geo.size.width,
+                            height: geo.size.height * 0.675,
+                            alignment: .center
+                        )
+                        .cornerRadius(25)
+
+                    Spacer().frame(height: 25)
+
+                    Text(movie.title)
+                        .font(.largeTitle)
+                        .foregroundStyle(.primary)
+                        .lineLimit(3)
+                        .multilineTextAlignment(.center)
+                        .frame(minWidth: 0, maxWidth: .infinity, alignment: .center)
+                        .fixedSize(horizontal: false, vertical: true)
+
+                    Spacer().frame(height: 9)
+
+                    Text(movie.releaseDate)
+                        .font(.largeTitle)
+                        .foregroundStyle(.secondary)
+                        .lineLimit(2)
+                        .multilineTextAlignment(.center)
+                        .frame(minWidth: 0, maxWidth: .infinity, alignment: .center)
+                        .fixedSize(horizontal: true, vertical: true)
+
+                    Spacer()
                 }
             }
         }
