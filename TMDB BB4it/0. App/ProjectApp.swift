@@ -11,7 +11,7 @@ import SwiftUI
 struct ProjectApp: App {
     var body: some Scene {
         WindowGroup {
-            ListScreen(controller: .init())
+            ListScreen()
         }
     }
 }

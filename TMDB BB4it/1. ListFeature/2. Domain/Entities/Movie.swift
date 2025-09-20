@@ -7,12 +7,25 @@
 
 import Foundation
 
-struct Movie {
+struct Movie: Identifiable, Hashable {
     let id: Int
     let title: String
     let overview: String
     let posterURL: URL
     let releaseDate: String
+
+    static func == (lhs: Movie, rhs: Movie) -> Bool {
+        return lhs.id == rhs.id
+    }
+
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+        hasher.combine(title)
+    }
+}
+
+extension Movie {
+    var idString: String { "\(id)s" }
 }
 
 extension Movie {

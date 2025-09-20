@@ -8,7 +8,9 @@
 import Foundation
 
 protocol MovieListRepository {
-    func getNowPlayingList(page: Int) async throws -> MovieListPage
+    func getNowPlayingList(page: Int) async throws -> MovieListResult
+    func getUpcomingList(page: Int) async throws -> MovieListResult
+    func getPopularList(page: Int) async throws -> MovieListResult
 }
 
 extension MovieListRepository where Self == RealMovieListRepository {

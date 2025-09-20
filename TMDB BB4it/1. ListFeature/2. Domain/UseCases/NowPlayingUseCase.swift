@@ -7,14 +7,14 @@
 
 import Foundation
 
-struct NowPlayingUseCase {
+struct NowPlayingUseCase: MovieListUseCase {
     private let repository: MovieListRepository
 
     init(repository: MovieListRepository) {
         self.repository = repository
     }
 
-    func execute(page: Int) async throws -> MovieListPage {
-        try await repository.getNowPlayingList(page: 1)
+    func execute(page: Int) async throws -> MovieListResult {
+        try await repository.getNowPlayingList(page: page)
     }
 }

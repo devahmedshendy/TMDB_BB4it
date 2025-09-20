@@ -12,20 +12,72 @@ struct RealMovieListRepository: MovieListRepository {
     // MARK: Properties
 
     private let api: APIClient
+    private let cache: ImageCacheClient
 
     // MARK: Lifecycle
 
-    init(api: APIClient = .native()) {
+    init(
+        api: APIClient = .native(),
+        cache: ImageCacheClient = .kingfisher
+    ) {
         self.api = api
+        self.cache = cache
     }
 
     // MARK: Logic
 
-    func getNowPlayingList(page: Int) async throws -> MovieListPage {
-        let request = NowPlayingMovieListRequest(page: page)
+    func getNowPlayingList(page: Int) async throws -> MovieListResult {
+        let request = MovieListRequest(
+            page: page,
+            path: MovieListPath.nowPlaying.rawValue
+        )
 
         let result = try await api.get(request)
 
+        try await cacheImages(for: result)
+
         return .init(from: result)
+    }
+
+    func getUpcomingList(page: Int) async throws -> MovieListResult {
+        let request = MovieListRequest(
+            page: page,
+            path: MovieListPath.upcoming.rawValue
+        )
+
+        let result = try await api.get(request)
+
+        try await cacheImages(for: result)
+
+        return .init(from: result)
+    }
+
+    func getPopularList(page: Int) async throws -> MovieListResult {
+        let request = MovieListRequest(
+            page: page,
+            path: MovieListPath.popular.rawValue
+        )
+
+        let result = try await api.get(request)
+
+        try await cacheImages(for: result)
+
+        return .init(from: result)
+    }
+
+    // MARK: Helpers
+
+    private func cacheImages(
+        for response: MovieListResponse
+    ) async throws {
+        await withThrowingTaskGroup(of: Void.self) { group in
+            for movie in response.results {
+                group.addTask {
+                    try await self.cache.cacheInMemory(
+                        from: movie.poster_url
+                    )
+                }
+            }
+        }
     }
 }

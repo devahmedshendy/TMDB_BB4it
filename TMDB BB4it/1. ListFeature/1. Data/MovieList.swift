@@ -1,5 +1,5 @@
 //
-//  PopularMovieList.swift
+//  MovieList.swift
 //  TMDB BB4it
 //
 //  Created by Ahmed Shendy on 19/09/2025.
@@ -9,14 +9,12 @@ import Foundation
 
 // Request
 
-struct PopularMovieListRequest: TMDBAPIRequest {
-    typealias Response = PopularMovieListResponse
+struct MovieListRequest: TMDBAPIRequest {
+    typealias Response = MovieListResponse
 
     var page: Int
 
-    var path: String {
-        "movie/popular?language=en-US&page=\(page)"
-    }
+    var path: String
     var params: [String : String] {
         [
             "language": "en-US",
@@ -28,15 +26,13 @@ struct PopularMovieListRequest: TMDBAPIRequest {
 
 // Response
 
-struct PopularMovieListResponse: Decodable, MovieListResponse {
+struct MovieListResponse: Decodable {
     let page: Int
     let results: [MovieModel]
     let total_pages: Int
     let total_results: Int
 
-    enum CodingKeys: String, CodingKey {
-        case page, results
-        case total_pages
-        case total_results
+    enum CodingKeys: CodingKey {
+        case page, results, total_pages, total_results
     }
 }
