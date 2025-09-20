@@ -29,6 +29,7 @@ public extension ToastViewProtocol {
 }
 
 // MARK: - ToastManager
+// source: unknown
 @MainActor
 public final class ToastManager: @unchecked Sendable {
     public static let shared = ToastManager()
@@ -239,25 +240,5 @@ private final class ToastOperation: Operation, @unchecked Sendable {
             .compactMap { $0 as? UIWindowScene }
             .flatMap { $0.windows }
             .first { $0.isKeyWindow }
-    }
-}
-
-import Combine
-
-extension View {
-    func screenToast<P>(_ publisher: P) -> some View where P : Publisher, P.Output == String?, P.Failure == Never {
-        self.onReceive(publisher) { message in
-            if let message = message {
-                let view = InfoToastView(
-                    message: message
-                )
-
-                ToastManager.shared.showToast(
-                    toastView: view,
-                    duration: 2,
-                    position: .bottom
-                )
-            }
-        }
     }
 }
