@@ -24,8 +24,7 @@ class BaseController: ObservableObject {
     // MARK: Lifecycle
 
     deinit {
-        // TODO: setup basic logger
-//        deinitLog(Self.self)
+        deinitLog(Self.self)
     }
 
     // MARK: State Mutators
