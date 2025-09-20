@@ -15,6 +15,10 @@ struct NowPlayingUseCase: MovieListUseCase {
     }
 
     func execute(page: Int) async throws -> MovieListResult {
-        try await repository.getMovieList(path: .nowPlaying, page: page)
+        let result = try await repository.getMovieList(path: .nowPlaying, page: page)
+
+        try await repository.cacheImages(for: result)
+
+        return result
     }
 }

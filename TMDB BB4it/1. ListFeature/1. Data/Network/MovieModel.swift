@@ -31,14 +31,14 @@ struct MovieModel: Decodable {
 
         let poster_path = try container.decode(String.self, forKey: .poster_path)
         if let poster_url = URL(
-            string: .httpUrl.tmdbImageAPI + "\(poster_path)"
+            string: .httpUrl.tmdbPosterImageUrl + "\(poster_path)"
         ) {
             self.poster_url = poster_url
         } else {
             throw DecodingError.dataCorruptedError(
                 forKey: .poster_path,
                 in: container,
-                debugDescription: "Unable to build URL from poster_path: \(poster_path)"
+                debugDescription: .error.URLDecodingFromPath(path: poster_path)
             )
         }
 

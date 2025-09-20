@@ -1,5 +1,5 @@
 //
-//  RealMovieListRepository.swift
+//  RealMovieDetailRepository.swift
 //  TMDB BB4it
 //
 //  Created by Ahmed Shendy on 19/09/2025.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct RealMovieListRepository: MovieListRepository {
+struct RealMovieDetailRepository: MovieDetailRepository {
 
     // MARK: Properties
 
@@ -26,32 +26,22 @@ struct RealMovieListRepository: MovieListRepository {
 
     // MARK: Logic
 
-    func getMovieList(
-        path: MovieListPath,
-        page: Int
-    ) async throws -> MovieListResult {
-        let request = MovieListRequest(
-            page: page,
-            path: path.rawValue
-        )
+    func getMovieDetail(id: Int) async throws -> MovieDetail {
+        let request = MovieDetailRequest(id: id)
 
         let result = try await api.get(request)
-
-        try await cacheImages(for: result)
 
         return .init(from: result)
     }
 
-    // MARK: Helpers
-
-    private func cacheImages(
-        for response: MovieListResponse
-    ) async throws {
+    func cacheImages(for response: MovieDetail) async throws {
         await withThrowingTaskGroup(of: Void.self) { group in
-            for movie in response.results {
+            for company in response.companies {
+                guard let logoURL = company.logoURL else { return }
+
                 group.addTask {
                     try await self.cache.cacheInMemory(
-                        from: movie.poster_url
+                        from: logoURL
                     )
                 }
             }

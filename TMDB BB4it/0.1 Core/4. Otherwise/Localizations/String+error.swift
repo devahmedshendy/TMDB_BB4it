@@ -16,4 +16,8 @@ extension String.error {
     static var NoNetworkConnection: String { "No internet connection" }
     static var NetworkError: String { "A network error occurred" }
     static var ResponseSerialization: String { "Unable to process server response" }
+
+    static func URLDecodingFromPath(path: String) -> String {
+        "Unable to build URL from: \(path)"
+    }
 }

@@ -6,13 +6,13 @@
 //
 
 import SwiftUI
-import Kingfisher
 
 struct MovieListTabView: View {
     @State private var index = 0
 
     @StateObject var controller: MovieListTabController
     let noContentData: EmptyContentData
+    let movieTapAction: (_ movie: Movie) -> Void
 
     var body: some View {
         NavigationStack {
@@ -67,6 +67,9 @@ struct MovieListTabView: View {
                 items: movies
             ) { movie in
                 MovieCardView(movie: movie)
+                    .onTapGesture {
+                        movieTapAction(movie)
+                    }
                     .onAppear {
                         print("on MovieCardView appeared: \(movie.title)")
                     }
@@ -85,50 +88,6 @@ struct MovieListTabView: View {
                             }
                         }
                     }
-            }
-        }
-    }
-}
-
-extension MovieListTabView {
-    struct MovieCardView: View {
-        let movie: Movie
-
-        var body: some View {
-            GeometryReader { geo in
-                VStack(alignment: .center, spacing: 0) {
-                    KFImage(movie.posterURL)
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                        .frame(
-                            width: geo.size.width,
-                            height: geo.size.height * 0.675,
-                            alignment: .center
-                        )
-                        .cornerRadius(25)
-
-                    Spacer().frame(height: 25)
-
-                    Text(movie.title)
-                        .font(.largeTitle)
-                        .foregroundStyle(.primary)
-                        .lineLimit(3)
-                        .multilineTextAlignment(.center)
-                        .frame(minWidth: 0, maxWidth: .infinity, alignment: .center)
-                        .fixedSize(horizontal: false, vertical: true)
-
-                    Spacer().frame(height: 9)
-
-                    Text(movie.releaseDate)
-                        .font(.largeTitle)
-                        .foregroundStyle(.secondary)
-                        .lineLimit(2)
-                        .multilineTextAlignment(.center)
-                        .frame(minWidth: 0, maxWidth: .infinity, alignment: .center)
-                        .fixedSize(horizontal: true, vertical: true)
-
-                    Spacer()
-                }
             }
         }
     }

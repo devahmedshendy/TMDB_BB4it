@@ -7,22 +7,11 @@
 
 import Foundation
 
-struct MovieListResult: Hashable {
+struct MovieListResult {
     let page: Int
     let list: [Movie]
     let totalPages: Int
     let totalCount: Int
-
-    var isEmpty: Bool { list.isEmpty }
-
-    func withNextResult(_ nextResult: MovieListResult) -> Self {
-        .init(
-            page: nextResult.page,
-            list: self.list + nextResult.list,
-            totalPages: nextResult.totalPages,
-            totalCount: nextResult.totalCount
-        )
-    }
 }
 
 extension MovieListResult {

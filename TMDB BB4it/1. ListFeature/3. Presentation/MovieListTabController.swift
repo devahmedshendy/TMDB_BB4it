@@ -94,33 +94,37 @@ final class MovieListTabController: BaseController {
             self.onLoadingMoreFailure(error.mapToApplicationError())
         }
 
-        guard isLoadingMore == false else { return }
+        func run() {
+            guard isLoadingMore == false else { return }
 
-        guard case let .ready(currentResult) = self.data else { return }
-        guard currentResult.page < currentResult.totalPages else { return }
+            guard case let .ready(currentResult) = self.data else { return }
+            guard currentResult.page < currentResult.totalPages else { return }
 
-        tasks[#function]?.cancel()
-        tasks[#function] = nil
-        tasks[#function] = Task { [weak self] in
-            do {
-                onStartLoadingNextPage()
+            tasks[#function]?.cancel()
+            tasks[#function] = nil
+            tasks[#function] = Task { [weak self] in
+                do {
+                    onStartLoadingNextPage()
 
-                let nextPageResult = try await self?.useCase.execute(
-                    page: currentResult.page + 1
-                )
+                    let nextPageResult = try await self?.useCase.execute(
+                        page: currentResult.page + 1
+                    )
 
-                guard nextPageResult?.isEmpty == false else {
-                    self?.onStopLoadingMore()
-                    return
+                    guard nextPageResult?.isEmpty == false else {
+                        self?.onStopLoadingMore()
+                        return
+                    }
+
+                    guard let nextPageResult else { return }
+
+                    onSuccessLoadingNextPage(current: currentResult, next: nextPageResult)
+
+                } catch {
+                    onFailedLoadingNextPage(error: error)
                 }
-
-                guard let nextPageResult else { return }
-
-                onSuccessLoadingNextPage(current: currentResult, next: nextPageResult)
-
-            } catch {
-                onFailedLoadingNextPage(error: error)
             }
         }
+
+        run()
     }
 }

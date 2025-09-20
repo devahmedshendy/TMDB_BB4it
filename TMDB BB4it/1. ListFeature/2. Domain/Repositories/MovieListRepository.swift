@@ -9,6 +9,7 @@ import Foundation
 
 protocol MovieListRepository {
     func getMovieList(path: MovieListPath, page: Int) async throws -> MovieListResult
+    func cacheImages(for response: MovieListResult) async throws
 }
 
 extension MovieListRepository where Self == RealMovieListRepository {

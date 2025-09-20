@@ -19,7 +19,7 @@ extension TMDBAPIRequest {
     var authHeaders: [String : String] {
         [
             "accept": "application/json",
-            "Authorization": "Bearer \(Environment.ACCESS_TOKEN)"
+            "Authorization": "Bearer \(EnvironmentVariable.ACCESS_TOKEN)"
         ]
     }
 }

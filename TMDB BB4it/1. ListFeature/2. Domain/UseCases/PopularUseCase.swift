@@ -15,6 +15,10 @@ struct PopularUseCase: MovieListUseCase {
     }
 
     func execute(page: Int) async throws -> MovieListResult {
-        try await repository.getMovieList(path: .popular, page: page)
+        let result = try await repository.getMovieList(path: .popular, page: page)
+
+        try await repository.cacheImages(for: result)
+
+        return result
     }
 }
