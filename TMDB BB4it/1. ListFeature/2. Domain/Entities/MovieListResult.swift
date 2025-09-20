@@ -15,12 +15,12 @@ struct MovieListResult: Hashable {
 
     var isEmpty: Bool { list.isEmpty }
 
-    func withNextPage(_ moviePage: MovieListResult) -> Self {
+    func withNextResult(_ nextResult: MovieListResult) -> Self {
         .init(
-            page: moviePage.page,
-            list: self.list + moviePage.list,
-            totalPages: moviePage.totalPages,
-            totalCount: moviePage.totalCount
+            page: nextResult.page,
+            list: self.list + nextResult.list,
+            totalPages: nextResult.totalPages,
+            totalCount: nextResult.totalCount
         )
     }
 }

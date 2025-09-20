@@ -54,29 +54,29 @@ final class MovieListTabController: BaseController {
     }
 
     func getNextPage() {
-        guard isLoadingMore == false, tasks[#function] == nil else { return }
+        guard !isLoadingMore else { return }
+
+        guard case let .ready(currentResult) = self.data else { return }
+        guard currentResult.page < currentResult.totalPages else { return }
 
         print("👉 loadNextPage")
         tasks[#function]?.cancel()
         tasks[#function] = nil
         tasks[#function] = Task { [weak self] in
             do {
-                guard case let .ready(moviePage) = self?.data else { return }
 
                 self?.onStartLoadingMore()
 
-                let result = try await self?.useCase.execute(
-                    page: moviePage.page + 1
+                let nextPageResult = try await self?.useCase.execute(
+                    page: currentResult.page + 1
                 )
 
-                guard result?.isEmpty == false else { return }
+                guard nextPageResult?.isEmpty == false else { return }
 
-                guard Task.isNotCancelled, var result else { return }
+                guard Task.isNotCancelled, let nextPageResult else { return }
 
-                result = moviePage.withNextPage(result)
-                self?.data = .ready(result)
-
-//                print(nextMoviePage)
+                let combinedResult = currentResult.withNextResult(nextPageResult)
+                self?.data = .ready(combinedResult)
 
                 self?.onStopLoadingMore()
 

@@ -26,36 +26,13 @@ struct RealMovieListRepository: MovieListRepository {
 
     // MARK: Logic
 
-    func getNowPlayingList(page: Int) async throws -> MovieListResult {
+    func getMovieList(
+        path: MovieListPath,
+        page: Int
+    ) async throws -> MovieListResult {
         let request = MovieListRequest(
             page: page,
-            path: MovieListPath.nowPlaying.rawValue
-        )
-
-        let result = try await api.get(request)
-
-        try await cacheImages(for: result)
-
-        return .init(from: result)
-    }
-
-    func getUpcomingList(page: Int) async throws -> MovieListResult {
-        let request = MovieListRequest(
-            page: page,
-            path: MovieListPath.upcoming.rawValue
-        )
-
-        let result = try await api.get(request)
-
-        try await cacheImages(for: result)
-
-        return .init(from: result)
-    }
-
-    func getPopularList(page: Int) async throws -> MovieListResult {
-        let request = MovieListRequest(
-            page: page,
-            path: MovieListPath.popular.rawValue
+            path: path.rawValue
         )
 
         let result = try await api.get(request)
