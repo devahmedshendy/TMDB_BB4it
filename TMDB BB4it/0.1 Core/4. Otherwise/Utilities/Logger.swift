@@ -32,14 +32,24 @@ public func debugLog(
 }
 
 public func debugJSON(
-    _ object: Encodable,
+    _ data: Data,
     fileID: String = #fileID,
     function: String = #function,
     line: Int = #line
 ) {
-    if let jsonData = try? JSONEncoder().encode(object) {
-        debugPrint(String(decoding: jsonData, as: UTF8.self))
+#if DEBUG
+    let encoder = JSONEncoder()
+    encoder.outputFormatting = .prettyPrinted
+
+    if let jsonObject = try? JSONSerialization.jsonObject(with: data, options: []),
+       let data = try? JSONSerialization.data(withJSONObject: jsonObject, options: [.prettyPrinted]),
+       let string = NSString(data: data, encoding: String.Encoding.utf8.rawValue) {
+        Logger.standard.debug(
+            "\(formatted(string, fileID: fileID, function: function, line: line))"
+        )
     }
+#else
+#endif
 }
 
 public func errorLog(

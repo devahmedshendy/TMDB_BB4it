@@ -34,8 +34,8 @@ struct NativeAPIClient: APIClient {
             let url = try buildURL(from: request)
             let urlRequest = buildURLRequest(from: request, httpMethod: .httpMethod.GET, url: url)
             let data = try await executeRequest(for: urlRequest)
-            let decoded = try decode(from: data, as: T.Response.self)
-            debugLog(decoded)
+            debugJSON(data)
+            let decoded = try decode(T.Response.self, from: data)
             return decoded
 
         } catch let error {
@@ -80,7 +80,7 @@ struct NativeAPIClient: APIClient {
         return data
     }
 
-    private func decode<T: Decodable>(from data: Data, as type: T.Type) throws -> T {
+    private func decode<T: Decodable>(_ type: T.Type, from data: Data) throws -> T {
         do {
             return try decoder.decode(T.self, from: data)
         } catch let decodingError {
