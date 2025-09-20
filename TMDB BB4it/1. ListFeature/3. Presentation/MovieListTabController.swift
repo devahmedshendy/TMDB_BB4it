@@ -11,7 +11,7 @@ final class MovieListTabController: BaseController {
 
     // MARK: States
 
-    @Published var data: ScreenDataState<MovieListResult> = .idle
+    @Published var data: ScreenFailableDataState<MovieListResult> = .idle
     let title: String
 
     // MARK: Properties
@@ -32,25 +32,48 @@ final class MovieListTabController: BaseController {
     // MARK: Logic
 
     func getFirstPage() {
-        tasks[#function]?.cancel()
-        tasks[#function] = nil
-        tasks[#function] = Task { [weak self] in
-            do {
-                self?.onStartLoading()
-                let result = try await self?.useCase.execute(page: 1)
+        func onStartLoadingFirstPage() {
+            self.data = .idle
+            self.onStartLoading()
+        }
 
-                guard Task.isNotCancelled, let result else { return }
+        func onSuccessLoadingFirstPage(result: MovieListResult) {
+            guard Task.isNotCancelled else { return }
 
-                self?.data = .ready(result)
-                print(result)
+            self.data = .ready(result)
+            self.onStopLoading()
+        }
 
-                self?.onStopLoading()
+        func onFailedLoadingFirstPage(error: Error) {
+            guard Task.isNotCancelled else { return }
 
-            } catch {
-                print((error as NSError).debugDescription)
-                self?.onStopLoading()
+            let error = error.mapToApplicationError()
+            print(error.debugDescription)
+
+            self.data = .error(error)
+            self.onStopLoading()
+        }
+
+        func run() {
+            tasks[#function]?.cancel()
+            tasks[#function] = nil
+            tasks[#function] = Task { [weak self] in
+                do {
+                    onStartLoadingFirstPage()
+
+                    let result = try await self?.useCase.execute(page: 1)
+
+                    guard let result else { return }
+
+                    onSuccessLoadingFirstPage(result: result)
+
+                } catch {
+                    onFailedLoadingFirstPage(error: error)
+                }
             }
         }
+
+        run()
     }
 
     func getNextPage() {

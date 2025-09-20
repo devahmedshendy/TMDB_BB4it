@@ -8,57 +8,52 @@
 import SwiftUI
 
 struct ListScreen: View {
+
+    init() {
+        setupTabBarAppearance()
+        setupNavigationBarAppearance()
+    }
     var body: some View {
         TabView {
             MovieListTabView(
                 controller: .init(
                     title: .text.NowPlaying,
                     useCase: .nowPlaying
-                )
+                ),
+                noContentData: .nowPlaying
             )
-            .tabItem {
-                Label(
-                    String.text.NowPlaying,
-                    systemImage: "play.rectangle.on.rectangle.fill"
-                )
-            }
+            .nowPlayingTabItem()
 
             MovieListTabView(
                 controller: .init(
                     title: .text.Upcoming,
                     useCase: .upcoming
-                )
+                ),
+                noContentData: .upcoming
             )
-            .tabItem {
-                Label(
-                    String.text.Upcoming,
-                    systemImage: "sparkles"
-                )
-            }
+            .upcomingTabItem()
 
             MovieListTabView(
                 controller: .init(
                     title: .text.Popular,
                     useCase: .popular
-                )
+                ),
+                noContentData: .popular
             )
-            .tabItem {
-                Label(
-                    String.text.Popular,
-                    systemImage: "flame.fill"
-                )
-            }
+            .popularTabItem()
         }
-        .onAppear {
-            let tabBarAppearance = UITabBarAppearance()
-            tabBarAppearance.configureWithDefaultBackground()
-            UITabBar.appearance().scrollEdgeAppearance = tabBarAppearance
-            // correct the transparency bug for Navigation bars
-            let navigationBarAppearance = UINavigationBarAppearance()
-            navigationBarAppearance.configureWithTransparentBackground()
-            UINavigationBar.appearance().scrollEdgeAppearance = navigationBarAppearance
+    }
 
-        }
+    private func setupTabBarAppearance() {
+        let tabBarAppearance = UITabBarAppearance()
+        tabBarAppearance.configureWithDefaultBackground()
+        UITabBar.appearance().scrollEdgeAppearance = tabBarAppearance
+    }
+
+    private func setupNavigationBarAppearance() {
+        let navigationBarAppearance = UINavigationBarAppearance()
+        navigationBarAppearance.configureWithTransparentBackground()
+        UINavigationBar.appearance().scrollEdgeAppearance = navigationBarAppearance
     }
 }
 

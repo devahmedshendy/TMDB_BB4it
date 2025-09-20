@@ -14,6 +14,7 @@ extension View {
             if isLoading {
                 ZStack {
                     ProgressView()
+                        .controlSize(.large)
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
             }

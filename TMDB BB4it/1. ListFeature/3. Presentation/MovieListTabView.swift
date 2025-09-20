@@ -9,8 +9,10 @@ import SwiftUI
 import Kingfisher
 
 struct MovieListTabView: View {
-    @StateObject var controller: MovieListTabController
     @State private var index = 0
+
+    @StateObject var controller: MovieListTabController
+    let noContentData: EmptyContentData
 
     var body: some View {
         NavigationStack {
@@ -20,7 +22,25 @@ struct MovieListTabView: View {
                     Color.clear
 
                 case .ready(let data):
-                    readyView(movies: data.list)
+                    if data.isEmpty {
+                        EmptyContentView(
+                            data: noContentData,
+                            onRetry: {
+                                controller.getFirstPage()
+                            }
+                        )
+
+                    } else {
+                        readyView(movies: data.list)
+                    }
+
+                case .error(let error):
+                    EmptyContentView(
+                        data: .movieList(error: error),
+                        onRetry: {
+                            controller.getFirstPage()
+                        }
+                    )
                 }
             }
             .background(

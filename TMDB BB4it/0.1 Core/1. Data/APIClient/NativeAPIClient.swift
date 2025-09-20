@@ -34,15 +34,19 @@ struct NativeAPIClient: APIClient {
             let url = try buildURL(from: request)
             let urlRequest = buildURLRequest(from: request, httpMethod: .httpMethod.GET, url: url)
             let data = try await executeRequest(for: urlRequest)
-            return try decode(from: data, as: T.Response.self)
+            let decoded = try decode(from: data, as: T.Response.self)
+            debugLog(decoded)
+            return decoded
 
         } catch let error {
-            throw (error as? APIError) ?? mapSystemError(error)
+            let error = (error as? APIError) ?? mapSystemError(error)
+            errorLog(error)
+            throw error
         }
     }
 
     private func buildURLRequest<T: APIRequest>(from request: T, httpMethod: String, url: URL) -> URLRequest {
-        var urlRequest = URLRequest(url: url)
+        var urlRequest = URLRequest(url: url, cachePolicy: .reloadIgnoringCacheData)
         urlRequest.httpMethod = httpMethod
         request.headers.forEach { urlRequest.setValue($0.value, forHTTPHeaderField: $0.key) }
         return urlRequest

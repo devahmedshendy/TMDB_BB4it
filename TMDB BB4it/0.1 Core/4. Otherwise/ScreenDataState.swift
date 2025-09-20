@@ -8,6 +8,7 @@
 
 import Foundation
 
+// TODO: remove all Hashable stuff
 enum ScreenDataState<T: Hashable>: Hashable {
     case idle
     case ready(_ data: T)

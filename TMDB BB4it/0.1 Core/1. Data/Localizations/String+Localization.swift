@@ -9,5 +9,7 @@ import Foundation
 
 extension String {
     enum text { }
+    enum button { }
+    enum empty { }
     enum error { }
 }
