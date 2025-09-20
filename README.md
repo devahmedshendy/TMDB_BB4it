@@ -2,14 +2,14 @@
 
 ## Getting Started
 
-1.  **Create an environment file.**
+1.  **Create an environment file.**</br>
     Create a `.env` file in the root of the project.
 
-2.  **Add your API Token.**
+2.  **Add your API Token.**</br>
     Open the `.env` file and add your TMDB API Access Token like this:
 
 ```markdown
-    ACCESS_TOKEN = "YOUR_API_ACCESS_TOKEN_HERE"
+ACCESS_TOKEN = "YOUR_API_ACCESS_TOKEN_HERE"
 ```
 
 You can now build and run the project. For more details on the setup, see the notes below.
@@ -24,7 +24,7 @@ The project uses a build script to automatically populate a `Secrets.xcconfig` f
 However, this means the `Secrets.xcconfig` file will show as modified in Git. To prevent accidentally committing this file, it's recommended to tell Git to ignore local changes by running this command once from the project root:
 
 ```shell
-git update-index --skip-worktree "TMDB_BB4it/Secrets.xcconfig"
+git update-index --assume-unchanged TMDB_BB4it/Secrets.xcconfig
 ```
 
 ### Documentation Index
