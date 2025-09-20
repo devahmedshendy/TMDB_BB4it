@@ -56,12 +56,10 @@ struct NativeAPIClient: APIClient {
         let (data, response) = try await urlSession.data(for: urlRequest)
 
         guard let httpResponse = response as? HTTPURLResponse else {
-            // This is an unusual case, but good to handle.
             throw APIError.NetworkError("Response was not an HTTPURLResponse.")
         }
 
         guard (200...299).contains(httpResponse.statusCode) else {
-            // Here, we can inspect the status code for more detail
             switch httpResponse.statusCode {
             case 401:
                 throw APIError.UnauthorizedRequest("Authentication failed.")
@@ -89,7 +87,6 @@ struct NativeAPIClient: APIClient {
     }
 
     private func mapSystemError(_ error: Error) -> APIError {
-        // Handle URLErrors, which are the most common from URLSession
         if let urlError = error as? URLError {
             switch urlError.code {
             case .notConnectedToInternet, .networkConnectionLost:
@@ -106,7 +103,6 @@ struct NativeAPIClient: APIClient {
             }
         }
 
-        // Handle other potential system errors
         return APIError.NetworkError(error.localizedDescription)
     }
 }

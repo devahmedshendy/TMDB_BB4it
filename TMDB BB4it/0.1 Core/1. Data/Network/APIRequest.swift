@@ -15,7 +15,7 @@ protocol APIRequest {
     var headers: [String: String] { get }
     var params: [String : String] { get }
     var method: String { get }
-    var body: Encodable? { get } // Not needed anyway for this task
+    var body: Encodable? { get }
 }
 
 extension APIRequest {

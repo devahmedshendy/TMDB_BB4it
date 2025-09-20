@@ -45,7 +45,7 @@ struct EmptyContentView: View {
                     .fontWeight(.semibold)
                     .frame(maxWidth: .infinity)
             }
-            .buttonStyle(.borderedProminent) // Clean, modern button style
+            .buttonStyle(.borderedProminent)
             .controlSize(.large)
             .padding(.horizontal, 40)
             .padding(.top, 20)

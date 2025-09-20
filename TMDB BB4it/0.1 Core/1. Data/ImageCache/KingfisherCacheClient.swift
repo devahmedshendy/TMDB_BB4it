@@ -16,10 +16,8 @@ final class KingfisherCacheClient: ImageCacheClient {
                 completionHandler: { result in
                     switch result {
                     case .success:
-                        // The image is now in the cache. We can successfully resume.
                         continuation.resume()
                     case .failure(let error):
-                        // If Kingfisher fails, we throw the error.
                         continuation.resume(throwing: error)
                     }
                 }

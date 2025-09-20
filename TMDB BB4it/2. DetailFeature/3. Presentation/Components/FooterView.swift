@@ -37,7 +37,7 @@ extension MovieDetailScreen {
                     .padding(.top, 8)
             }
             .padding(.horizontal)
-            .padding(.bottom, 40) // Add padding to keep it away from the home indicator
+            .padding(.bottom, 40)
         }
     }
 }
