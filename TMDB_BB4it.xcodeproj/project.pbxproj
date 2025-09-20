@@ -11,13 +11,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		641068C42E7D1491007B9607 /* TMDB BB4it.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TMDB BB4it.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		641068C42E7D1491007B9607 /* TMDB_BB4it.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TMDB_BB4it.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		641068C62E7D1491007B9607 /* TMDB BB4it */ = {
+		641068C62E7D1491007B9607 /* TMDB_BB4it */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = "TMDB BB4it";
+			path = TMDB_BB4it;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -37,7 +37,7 @@
 		641068BB2E7D1491007B9607 = {
 			isa = PBXGroup;
 			children = (
-				641068C62E7D1491007B9607 /* TMDB BB4it */,
+				641068C62E7D1491007B9607 /* TMDB_BB4it */,
 				641068C52E7D1491007B9607 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -45,7 +45,7 @@
 		641068C52E7D1491007B9607 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				641068C42E7D1491007B9607 /* TMDB BB4it.app */,
+				641068C42E7D1491007B9607 /* TMDB_BB4it.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -53,9 +53,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		641068C32E7D1491007B9607 /* TMDB BB4it */ = {
+		641068C32E7D1491007B9607 /* TMDB_BB4it */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 641068CF2E7D1498007B9607 /* Build configuration list for PBXNativeTarget "TMDB BB4it" */;
+			buildConfigurationList = 641068CF2E7D1498007B9607 /* Build configuration list for PBXNativeTarget "TMDB_BB4it" */;
 			buildPhases = (
 				641068C02E7D1491007B9607 /* Sources */,
 				641068C12E7D1491007B9607 /* Frameworks */,
@@ -66,14 +66,14 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				641068C62E7D1491007B9607 /* TMDB BB4it */,
+				641068C62E7D1491007B9607 /* TMDB_BB4it */,
 			);
-			name = "TMDB BB4it";
+			name = TMDB_BB4it;
 			packageProductDependencies = (
 				64106ABC2E7D938C007B9607 /* Kingfisher */,
 			);
 			productName = "TMDB BB4it";
-			productReference = 641068C42E7D1491007B9607 /* TMDB BB4it.app */;
+			productReference = 641068C42E7D1491007B9607 /* TMDB_BB4it.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -91,7 +91,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 641068BF2E7D1491007B9607 /* Build configuration list for PBXProject "TMDB BB4it" */;
+			buildConfigurationList = 641068BF2E7D1491007B9607 /* Build configuration list for PBXProject "TMDB_BB4it" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -108,7 +108,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				641068C32E7D1491007B9607 /* TMDB BB4it */,
+				641068C32E7D1491007B9607 /* TMDB_BB4it */,
 			);
 		};
 /* End PBXProject section */
@@ -136,7 +136,7 @@
 /* Begin XCBuildConfiguration section */
 		641068CD2E7D1498007B9607 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReferenceAnchor = 641068C62E7D1491007B9607 /* TMDB BB4it */;
+			baseConfigurationReferenceAnchor = 641068C62E7D1491007B9607 /* TMDB_BB4it */;
 			baseConfigurationReferenceRelativePath = Secrets.xcconfig;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -202,7 +202,7 @@
 		};
 		641068CE2E7D1498007B9607 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReferenceAnchor = 641068C62E7D1491007B9607 /* TMDB BB4it */;
+			baseConfigurationReferenceAnchor = 641068C62E7D1491007B9607 /* TMDB_BB4it */;
 			baseConfigurationReferenceRelativePath = Secrets.xcconfig;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -336,7 +336,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		641068BF2E7D1491007B9607 /* Build configuration list for PBXProject "TMDB BB4it" */ = {
+		641068BF2E7D1491007B9607 /* Build configuration list for PBXProject "TMDB_BB4it" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				641068CD2E7D1498007B9607 /* Debug */,
@@ -345,7 +345,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		641068CF2E7D1498007B9607 /* Build configuration list for PBXNativeTarget "TMDB BB4it" */ = {
+		641068CF2E7D1498007B9607 /* Build configuration list for PBXNativeTarget "TMDB_BB4it" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				641068D02E7D1498007B9607 /* Debug */,

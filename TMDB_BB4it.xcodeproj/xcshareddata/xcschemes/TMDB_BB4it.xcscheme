@@ -11,14 +11,14 @@
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
             <ActionContent
                title = "Load Environment Variables"
-               scriptText = "ENV_FILE=&quot;${SRCROOT}/.env&quot;&#10;CONFIG_FILE=&quot;${SRCROOT}/TMDB BB4it/Secrets.xcconfig&quot;&#10;&#10;# Check if the .env file exists before trying to use it&#10;if [ ! -f &quot;$ENV_FILE&quot; ]; then&#10;    echo &quot;error: .env file not found. Please follow the &apos;Getting Started&apos; instructions in README.md to create it.&quot; &gt;&amp;2&#10;    exit 1&#10;fi&#10;&#10;# If the file exists, proceed as normal&#10;# This will clear the old config and write the new one from .env&#10;&gt; &quot;$CONFIG_FILE&quot;&#10;cat &quot;$ENV_FILE&quot; &gt;&gt; &quot;$CONFIG_FILE&quot;&#10;">
+               scriptText = "ENV_FILE=&quot;${SRCROOT}/.env&quot;&#10;CONFIG_FILE=&quot;${SRCROOT}/TMDB_BB4it/Secrets.xcconfig&quot;&#10;&#10;# Check if the .env file exists before trying to use it&#10;if [ ! -f &quot;$ENV_FILE&quot; ]; then&#10;    echo &quot;error: .env file not found. Please follow the &apos;Getting Started&apos; instructions in README.md to create it.&quot; &gt;&amp;2&#10;    exit 1&#10;fi&#10;&#10;# If the file exists, proceed as normal&#10;# This will clear the old config and write the new one from .env&#10;&gt; &quot;$CONFIG_FILE&quot;&#10;cat &quot;$ENV_FILE&quot; &gt;&gt; &quot;$CONFIG_FILE&quot;&#10;">
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
                      BlueprintIdentifier = "641068C32E7D1491007B9607"
-                     BuildableName = "TMDB BB4it.app"
-                     BlueprintName = "TMDB BB4it"
-                     ReferencedContainer = "container:TMDB BB4it.xcodeproj">
+                     BuildableName = "TMDB_BB4it.app"
+                     BlueprintName = "TMDB_BB4it"
+                     ReferencedContainer = "container:TMDB_BB4it.xcodeproj">
                   </BuildableReference>
                </EnvironmentBuildable>
             </ActionContent>
@@ -34,9 +34,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "641068C32E7D1491007B9607"
-               BuildableName = "TMDB BB4it.app"
-               BlueprintName = "TMDB BB4it"
-               ReferencedContainer = "container:TMDB BB4it.xcodeproj">
+               BuildableName = "TMDB_BB4it.app"
+               BlueprintName = "TMDB_BB4it"
+               ReferencedContainer = "container:TMDB_BB4it.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -63,9 +63,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "641068C32E7D1491007B9607"
-            BuildableName = "TMDB BB4it.app"
-            BlueprintName = "TMDB BB4it"
-            ReferencedContainer = "container:TMDB BB4it.xcodeproj">
+            BuildableName = "TMDB_BB4it.app"
+            BlueprintName = "TMDB_BB4it"
+            ReferencedContainer = "container:TMDB_BB4it.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -80,9 +80,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "641068C32E7D1491007B9607"
-            BuildableName = "TMDB BB4it.app"
-            BlueprintName = "TMDB BB4it"
-            ReferencedContainer = "container:TMDB BB4it.xcodeproj">
+            BuildableName = "TMDB_BB4it.app"
+            BlueprintName = "TMDB_BB4it"
+            ReferencedContainer = "container:TMDB_BB4it.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
