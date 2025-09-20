@@ -47,7 +47,8 @@ struct MovieListTabView: View {
                 Color(red: 0.1, green: 0.1, blue: 0.12)
                     .ignoresSafeArea()
             )
-            .spinner(isLoading: controller.isLoading)
+            .screenSpinner(isLoading: controller.isLoading)
+            .screenToast(controller.$toast)
 
             .navigationTitle(controller.title)
 
@@ -101,7 +102,7 @@ struct MovieListTabView: View {
                     }
                     .onAppear {
                         // Define how close to the end we should be before loading more
-                        let threshold = 5
+                        let threshold = 10
 
                         // Find the index of the movie that just appeared
                         if let movieIndex = movies.firstIndex(where: { $0.id == movie.id }) {

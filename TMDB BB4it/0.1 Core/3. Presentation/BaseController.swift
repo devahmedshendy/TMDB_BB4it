@@ -18,6 +18,9 @@ class BaseController: ObservableObject {
     @Published
     private(set) var isLoadingMore: Bool = false
 
+    @Published
+    private(set) var toast: String? = nil
+
     // MARK: Lifecycle
 
     deinit {
@@ -37,13 +40,23 @@ class BaseController: ObservableObject {
         self.isLoading = false
     }
 
+    func onLoadingFailure(_ error: ApplicationError) {
+        self.toast = error.message
+        self.isLoading = false
+    }
+
     // isLoadingMore
 
     func onStartLoadingMore() {
-        isLoadingMore = true
+        self.isLoadingMore = true
     }
 
     func onStopLoadingMore() {
-        isLoadingMore = false
+        self.isLoadingMore = false
+    }
+
+    func onLoadingMoreFailure(_ error: ApplicationError) {
+        self.toast = error.message
+        self.isLoadingMore = false
     }
 }

@@ -48,7 +48,6 @@ final class MovieListTabController: BaseController {
             guard Task.isNotCancelled else { return }
 
             let error = error.mapToApplicationError()
-            print(error.debugDescription)
 
             self.data = .error(error)
             self.onStopLoading()
@@ -77,6 +76,24 @@ final class MovieListTabController: BaseController {
     }
 
     func getNextPage() {
+        func onStartLoadingNextPage() {
+            self.onStartLoadingMore()
+        }
+
+        func onSuccessLoadingNextPage(current: MovieListResult, next: MovieListResult) {
+            guard Task.isNotCancelled else { return }
+
+            let combined = current.withNextResult(next)
+            self.data = .ready(combined)
+            self.onStopLoadingMore()
+        }
+
+        func onFailedLoadingNextPage(error: Error) {
+            guard Task.isNotCancelled else { return }
+
+            self.onLoadingMoreFailure(error.mapToApplicationError())
+        }
+
         guard !isLoadingMore else { return }
 
         guard case let .ready(currentResult) = self.data else { return }
@@ -87,25 +104,23 @@ final class MovieListTabController: BaseController {
         tasks[#function] = nil
         tasks[#function] = Task { [weak self] in
             do {
-
-                self?.onStartLoadingMore()
+                onStartLoadingNextPage()
 
                 let nextPageResult = try await self?.useCase.execute(
                     page: currentResult.page + 1
                 )
 
-                guard nextPageResult?.isEmpty == false else { return }
+                guard nextPageResult?.isEmpty == false else {
+                    self?.onStopLoadingMore()
+                    return
+                }
 
-                guard Task.isNotCancelled, let nextPageResult else { return }
+                guard let nextPageResult else { return }
 
-                let combinedResult = currentResult.withNextResult(nextPageResult)
-                self?.data = .ready(combinedResult)
-
-                self?.onStopLoadingMore()
+                onSuccessLoadingNextPage(current: currentResult, next: nextPageResult)
 
             } catch {
-                print((error as NSError).debugDescription)
-                self?.onStopLoadingMore()
+                onFailedLoadingNextPage(error: error)
             }
         }
     }
