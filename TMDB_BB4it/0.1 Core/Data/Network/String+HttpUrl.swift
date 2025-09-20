@@ -13,7 +13,7 @@ extension String {
 
 extension String.httpUrl {
     static var tmdbAPI: String { "https://api.themoviedb.org/3/" }
-    static var tmdbPosterImageUrl: String { "https://image.tmdb.org/t/p/w342/" }
+    static var tmdbPosterImageUrl: String { "https://image.tmdb.org/t/p/w500/" }
     static var tmdbProductionLogoUrl: String { "https://image.tmdb.org/t/p/w300/" }
 
     static var imdbMovieUrl: String { "https://www.imdb.com/title/" }
