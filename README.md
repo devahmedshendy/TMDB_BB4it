@@ -30,8 +30,8 @@ git update-index --assume-unchanged TMDB_BB4it/Secrets.xcconfig
 ### Documentation Index
 
 After running the app, you can read more about the project:
--   [Architectural Approach](Architectural-Approach)
--   [Design Decisions](Design-Decisions)
+-   [Architectural Approach](#Architectural-Approach)
+-   [Design Decisions](#Design-Decisions)
 
 ## Architectural Approach
 
